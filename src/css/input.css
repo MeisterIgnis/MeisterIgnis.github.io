@@ -1,0 +1,12 @@
+div.table {
+  display: table;
+  text-align: center;
+}
+form.tr,
+div.tr {
+  display: table-row;
+}
+span.td {
+  display: table-cell;
+  border: 1px solid darkgray;
+}
