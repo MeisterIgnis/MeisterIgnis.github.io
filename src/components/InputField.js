@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/input.css';
 
-const InputRow = node => {
-  console.log(node);
+const InputRow = (node, state) => {
+  console.log(state);
+
   const { Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger } = node.data;
   const {
     changeNr,
@@ -10,7 +11,7 @@ const InputRow = node => {
     changeDauer,
     changeVorgänger,
     changeNachfolger
-  } = node;
+  } = state;
 
   var vorG = '';
   var nachV = '';
@@ -27,7 +28,11 @@ const InputRow = node => {
   return (
     <div className="tr">
       <span className="td">
-        <input type="text" value={Nr}></input>
+        <input
+          type="text"
+          value={Nr}
+          onChange={e => changeNr(e.target.value, Nr)}
+        ></input>
       </span>
       <span className="td">
         <input
@@ -61,8 +66,15 @@ const InputRow = node => {
   );
 };
 
-function InputField(state) {
+function InputField(
+  state,
+  changeBezeichnung,
+  changeDauer,
+  changeVorgänger,
+  changeNachfolger
+) {
   var nodes = state.state.nodes;
+  console.log(state);
   return (
     <div className="table">
       <div>
@@ -77,6 +89,18 @@ function InputField(state) {
           <InputRow key={i} data={e} />
         ))}
       </div>
+      <input
+        type="button"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        value="Add Node"
+        //TODO: ONCLICK FUNCTION
+      ></input>
+      <input
+        type="button"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        value="Delete Node"
+        //TODO: ONCLICK FUNCTION
+      ></input>
     </div>
   );
 }

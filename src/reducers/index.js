@@ -7,6 +7,7 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
+  //TODO: ADD FAZ; FEZ; SAZ; SEZ; GP
   nodes: [
     {
       Nr: 0,
@@ -26,51 +27,66 @@ const initialState = {
       Nr: 2,
       Bezeichnung: 'Pause',
       Dauer: 5,
-      Vorgänger: [1, 2],
+      Vorgänger: [1],
+      Nachfolger: [3]
+    },
+    {
+      Nr: 3,
+      Bezeichnung: 'Wiederholen',
+      Dauer: 200,
+      Vorgänger: [2],
       Nachfolger: []
     }
   ]
 };
 
+//TODO: FUNCTION: CALCULATE FAZ; FEZ; SAZ; SEZ; GP
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case CHANGE_NR: {
-      var idx = action.payload.idx;
+      let idx = action.payload.idx;
       var Nr = action.payload.value;
       return {
         ...state,
-        Nr
+        Nr,
+        idx
       };
     }
     case CHANGE_BEZEICHNUNG: {
-      var idx = action.payload.idx;
+      let idx = action.payload.idx;
       var Bezeichnung = action.payload.value;
       return {
         ...state,
-        Bezeichnung
+        Bezeichnung,
+        idx
       };
     }
     case CHANGE_DAUER: {
-      var idx = action.payload.idx;
+      let idx = action.payload.idx;
       var Dauer = action.payload.value;
       return {
         ...state,
-        Dauer
+        Dauer,
+        idx
       };
     }
     case CHANGE_VORGÄNGER: {
-      var idx = action.payload.idx;
+      let idx = action.payload.idx;
       var Vorgänger = action.payload.array;
       return {
         ...state,
-        Vorgänger
+        Vorgänger,
+        idx
       };
     }
     case CHANGE_NACHFOLGER: {
-      var idx = action.payload.idx;
+      let idx = action.payload.idx;
       var Nachfolger = action.payload.array;
       return {
-        ...state
+        ...state,
+        Nachfolger,
+        idx
         //state[idx].Nachfolger = Nachfolger
       };
     }
