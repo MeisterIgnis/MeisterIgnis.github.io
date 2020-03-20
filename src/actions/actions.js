@@ -36,7 +36,7 @@ export const changeVorgänger = (array, idx) => ({
   payload: { array, idx }
 });
 
-export const changeNachfolger = array => ({
+export const changeNachfolger = (array, idx) => ({
   type: CHANGE_NACHFOLGER,
-  payload: { array }
+  payload: { array, idx }
 });

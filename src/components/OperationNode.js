@@ -3,7 +3,6 @@ import '../css/App.css';
 
 const Node = node => {
   const { Bezeichnung, Dauer, FAZ, SEZ, FEZ, SAZ } = node.data;
-  console.log(node);
   return (
     <div className="m-5">
       <table className="table-auto">
@@ -35,7 +34,6 @@ const Node = node => {
 
 function OperationNode(state) {
   const nodes = state.state.nodes;
-  console.table(state);
   return (
     <div>
       {nodes.map((e, i) => (

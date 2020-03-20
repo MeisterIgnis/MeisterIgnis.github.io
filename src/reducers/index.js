@@ -74,6 +74,8 @@ export default function(state = initialState, action) {
 
       let nodes = state.nodes;
       nodes[idx].Bezeichnung = Bezeichnung;
+
+      nodes = calculateNodes(nodes);
       return {
         ...state,
         nodes
@@ -85,6 +87,8 @@ export default function(state = initialState, action) {
 
       let nodes = state.nodes;
       nodes[idx].Dauer = Dauer;
+
+      nodes = calculateNodes(nodes);
       return {
         ...state,
         nodes
@@ -97,6 +101,8 @@ export default function(state = initialState, action) {
 
       let nodes = state.nodes;
       nodes[idx].Vorgänger = Vorgänger;
+
+      nodes = calculateNodes(nodes);
       return {
         ...state,
         nodes
@@ -106,11 +112,14 @@ export default function(state = initialState, action) {
       let idx = action.payload.idx;
       var nachfolgerString = action.payload.array;
       var Nachfolger = convertToArray(nachfolgerString);
+
+      let nodes = state.nodes;
+      nodes[idx].Nachfolger = Nachfolger;
+
+      nodes = calculateNodes(nodes);
       return {
         ...state,
-        Nachfolger,
-        idx
-        //state[idx].Nachfolger = Nachfolger
+        nodes
       };
     }
     case ADD_NODE: {
@@ -134,15 +143,38 @@ export default function(state = initialState, action) {
 function convertToArray(arrayAlsString) {
   var stringAlsArray = [];
   var idx = 0;
+  let char = arrayAlsString.charAt(index);
   for (var index = 0; index < arrayAlsString.length; index++) {
-    if (
-      arrayAlsString.charAt(index) >= '0' &&
-      arrayAlsString.charAt(index) <= '9'
-    ) {
+    if (char >= '0' && char <= '9') {
       stringAlsArray[idx] = arrayAlsString.charAt(index);
       idx++;
     }
   }
 
   return stringAlsArray;
+}
+
+function calculateNodes(nodes) {
+  //TODO: der kleine Rest --- Welche Reihenfolge beim berechnen???
+  var nextFAZ = 0;
+  var nextFEZ = 0;
+
+  nodes.forEach(node => {
+    console.log(node.Vorgänger.length);
+
+    if (node.Vorgänger.length == 0) {
+      node.FAZ = 0;
+      node.FEZ = node.Dauer;
+    } else {
+      node.Vorgänger.forEach(vorG => {
+        if (nodes[vorG].FEZ > nextFAZ) {
+          nextFAZ = nodes[vorG].FEZ;
+        }
+      });
+      node.FAZ = parseInt(nextFAZ);
+      node.FEZ = parseInt(nextFAZ) + parseInt(node.Dauer);
+    }
+  });
+
+  return nodes;
 }

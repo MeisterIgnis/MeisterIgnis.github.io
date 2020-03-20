@@ -84,7 +84,6 @@ function InputField({
     changeVorgänger,
     changeNachfolger
   };
-  console.log(state);
   return (
     <div className="table">
       <div>
