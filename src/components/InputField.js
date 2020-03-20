@@ -68,10 +68,13 @@ const InputRow = (node, state) => {
 
 function InputField(
   state,
+  changeNr,
   changeBezeichnung,
   changeDauer,
   changeVorgänger,
-  changeNachfolger
+  changeNachfolger,
+  addNode,
+  deleteNode
 ) {
   var nodes = state.state.nodes;
   console.log(state);
@@ -93,13 +96,13 @@ function InputField(
         type="button"
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         value="Add Node"
-        //TODO: ONCLICK FUNCTION
+        onClick={addNode}
       ></input>
       <input
         type="button"
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         value="Delete Node"
-        //TODO: ONCLICK FUNCTION
+        onClick={deleteNode}
       ></input>
     </div>
   );

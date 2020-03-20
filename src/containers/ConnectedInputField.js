@@ -5,7 +5,9 @@ import {
   changeBezeichnung,
   changeDauer,
   changeVorgänger,
-  changeNachfolger
+  changeNachfolger,
+  addNode,
+  deleteNode
 } from '../actions/actions.js';
 
 const mapStateToProps = state => ({
@@ -17,7 +19,9 @@ const mapDispatchToProps = dispatch => ({
   changeBezeichnung: (value, idx) => dispatch(changeBezeichnung(value, idx)),
   changeDauer: (value, idx) => dispatch(changeDauer(value, idx)),
   changeVorgänger: (array, idx) => dispatch(changeVorgänger(array, idx)),
-  changeNachfolger: (array, idx) => dispatch(changeNachfolger(array, idx))
+  changeNachfolger: (array, idx) => dispatch(changeNachfolger(array, idx)),
+  addNode: () => dispatch(addNode()),
+  deleteNode: () => dispatch(deleteNode())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputField);

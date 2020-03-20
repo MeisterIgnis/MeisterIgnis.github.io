@@ -3,3 +3,6 @@ export const CHANGE_DAUER = 'CHANGE_DAUER';
 export const CHANGE_VORGÄNGER = 'CHANGE_VORGÄNGER';
 export const CHANGE_NACHFOLGER = 'CHANGE_NACHFOLGER';
 export const CHANGE_NR = 'CHANGE_NR';
+
+export const ADD_NODE = 'ADD_NODE';
+export const DELETE_NODE = 'DELETE_NODE';

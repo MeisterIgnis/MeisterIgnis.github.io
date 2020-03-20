@@ -3,11 +3,13 @@ import {
   CHANGE_BEZEICHNUNG,
   CHANGE_DAUER,
   CHANGE_VORGÄNGER,
-  CHANGE_NACHFOLGER
+  CHANGE_NACHFOLGER,
+  ADD_NODE,
+  DELETE_NODE
 } from '../actions/actionTypes';
 
 const initialState = {
-  //TODO: ADD FAZ; FEZ; SAZ; SEZ; GP
+  //TODO: ADD FAZ; FEZ; SAZ; SEZ;
   nodes: [
     {
       Nr: 0,
@@ -40,7 +42,7 @@ const initialState = {
   ]
 };
 
-//TODO: FUNCTION: CALCULATE FAZ; FEZ; SAZ; SEZ; GP
+//TODO: FUNCTION: CALCULATE FAZ; FEZ; SAZ; SEZ;
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -88,6 +90,16 @@ export default function(state = initialState, action) {
         Nachfolger,
         idx
         //state[idx].Nachfolger = Nachfolger
+      };
+    }
+    case ADD_NODE: {
+      return {
+        ...state
+      };
+    }
+    case DELETE_NODE: {
+      return {
+        ...state
       };
     }
     default: {
