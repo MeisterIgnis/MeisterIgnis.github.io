@@ -1,23 +1,25 @@
 import React from 'react';
 import '../css/input.css';
 
-function InputRow() {
+function InputRow({ b, d, v, n }) {
+  console.log(b, d, v, n);
   return (
-    <div class="tr">
-      <span class="td">
-        <input type="text" />
+    <div className="tr">
+      <span className="td">
+        <input type="text"></input>1
       </span>
-      <span class="td">
-        <input type="text" />
+      <span className="td">
+        <input type="text"></input>
+        {b}
       </span>
-      <span class="td">
-        <input type="text" />
+      <span className="td">
+        <input type="text"></input>d
       </span>
-      <span class="td">
-        <input type="text" />
+      <span className="td">
+        <input type="text"></input>v
       </span>
-      <span class="td">
-        <input type="text" />
+      <span className="td">
+        <input type="text"></input>n
       </span>
     </div>
   );

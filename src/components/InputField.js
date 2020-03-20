@@ -2,21 +2,23 @@ import React from 'react';
 import '../css/input.css';
 import InputRow from './InputRow';
 
-function InputField() {
-  const cellClass = 'border px-12 py-4';
-  const inputCell =
-    'appearance-none block h-full w-full bg-gray-200 text-gray-700 py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white';
+function InputField(...state) {
+  var Bezeichnung = state.Bezeichnung;
+  var Dauer = state.Dauer;
+  var Vorgänger = state.Vorgänger;
+  var Nachfolger = state.Nachfolger;
+  console.table(state.Nachfolger);
   return (
-    <div class="table">
+    <div className="table">
       <div>
-        <div class="tr">
-          <span class="td">Nr.</span>
-          <span class="td">Bezeichung</span>
-          <span class="td">Dauer</span>
-          <span class="td">Vorgänger</span>
-          <span class="td">Nachfolger</span>
+        <div className="tr">
+          <span className="td">Nr.</span>
+          <span className="td">Bezeichung</span>
+          <span className="td">Dauer</span>
+          <span className="td">Vorgänger</span>
+          <span className="td">Nachfolger</span>
         </div>
-        <InputRow />
+        <InputRow b={Bezeichnung} />
         <InputRow />
         <InputRow />
       </div>
