@@ -1,9 +1,15 @@
 import {
+    CHANGE_NR, 
   CHANGE_BEZEICHNUNG,
   CHANGE_DAUER,
   CHANGE_VORGÄNGER,
   CHANGE_NACHFOLGER
 } from './actionTypes';
+
+export const changeNr = value => ({
+    type: CHANGE_NR,
+    payload: { value }
+  });
 
 export const changeBezeichnung = value => ({
   type: CHANGE_BEZEICHNUNG,

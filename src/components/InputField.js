@@ -2,29 +2,26 @@ import React from 'react';
 import '../css/input.css';
 
 const InputRow = (state) => {
-  const {Bezeichnung, Dauer, Vorgänger, Nachfolger} = state.state
+  console.table(state)
+  const {Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger} = state.state
+  const {changeNr, changeBezeichnung, changeDauer, changeVorgänger, changeNachfolger} = state
 
   return (
     <div className="tr">
       <span className="td">
-        <input type="text"></input>
-        1
+        <input type="text" defaultValue={Nr} onChange={e => changeNr(e.target.value)}></input>
       </span>
       <span className="td">
-        <input type="text"></input>
-        {Bezeichnung}
+        <input type="text" defaultValue={Bezeichnung} onChange={e => changeBezeichnung(e.target.value)}></input>
       </span>
       <span className="td">
-        <input type="text"></input>
-        {Dauer}
+        <input type="text" defaultValue={Dauer} onChange={e => changeDauer(e.target.value)}></input>
       </span>
       <span className="td">
-        <input type="text"></input>
-        {Vorgänger}
+        <input type="text" defaultValue={Vorgänger[Nr]} onChange={e => changeVorgänger(e.target.value)}></input>
       </span>
       <span className="td">
-        <input type="text"></input>
-        {Nachfolger}
+        <input type="text" defaultValue={Nachfolger[Nr]} onChange={e => changeNachfolger(e.target.value)}></input>
       </span>
     </div>
   );
