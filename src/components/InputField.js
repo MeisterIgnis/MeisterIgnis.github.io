@@ -1,17 +1,17 @@
 import React from 'react';
 import '../css/input.css';
 
-const InputRow = (node, state) => {
-  console.log(state);
+const InputRow = ({ data, actions }) => {
+  //console.log(state);
 
-  const { Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger } = node.data;
+  const { Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger } = data;
   const {
     changeNr,
     changeBezeichnung,
     changeDauer,
     changeVorgänger,
     changeNachfolger
-  } = state;
+  } = actions;
 
   var vorG = '';
   var nachV = '';
@@ -66,7 +66,7 @@ const InputRow = (node, state) => {
   );
 };
 
-function InputField(
+function InputField({
   state,
   changeNr,
   changeBezeichnung,
@@ -75,8 +75,15 @@ function InputField(
   changeNachfolger,
   addNode,
   deleteNode
-) {
-  var nodes = state.state.nodes;
+}) {
+  var nodes = state.nodes;
+  const actions = {
+    changeNr,
+    changeBezeichnung,
+    changeDauer,
+    changeVorgänger,
+    changeNachfolger
+  };
   console.log(state);
   return (
     <div className="table">
@@ -89,7 +96,7 @@ function InputField(
           <span className="td">Nachfolger</span>
         </div>
         {nodes.map((e, i) => (
-          <InputRow key={i} data={e} />
+          <InputRow key={i} data={e} actions={actions} />
         ))}
       </div>
       <input
