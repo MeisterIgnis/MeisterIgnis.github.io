@@ -1,11 +1,11 @@
 import React from 'react';
 import OperationNode from './OperationNode';
-import InputField from './InputField';
+import ConnectedInputField from '../containers/ConnectedInputField';
 
 function App() {
   return (
     <div>
-      <InputField />
+      <ConnectedInputField />
       <OperationNode />
     </div>
   );

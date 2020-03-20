@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.table(state);
   switch (action.type) {
     case CHANGE_BEZEICHNUNG: {
       var Bezeichnung = action.payload.value;

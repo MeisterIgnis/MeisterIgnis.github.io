@@ -1,13 +1,37 @@
 import React from 'react';
 import '../css/input.css';
-import InputRow from './InputRow';
 
-function InputField(...state) {
-  var Bezeichnung = state.Bezeichnung;
-  var Dauer = state.Dauer;
-  var Vorgänger = state.Vorgänger;
-  var Nachfolger = state.Nachfolger;
-  console.table(state.Nachfolger);
+const InputRow = (state) => {
+  const {Bezeichnung, Dauer, Vorgänger, Nachfolger} = state.state
+
+  return (
+    <div className="tr">
+      <span className="td">
+        <input type="text"></input>
+        1
+      </span>
+      <span className="td">
+        <input type="text"></input>
+        {Bezeichnung}
+      </span>
+      <span className="td">
+        <input type="text"></input>
+        {Dauer}
+      </span>
+      <span className="td">
+        <input type="text"></input>
+        {Vorgänger}
+      </span>
+      <span className="td">
+        <input type="text"></input>
+        {Nachfolger}
+      </span>
+    </div>
+  );
+};
+
+function InputField(state) {
+  console.table(state)
   return (
     <div className="table">
       <div>
@@ -18,9 +42,7 @@ function InputField(...state) {
           <span className="td">Vorgänger</span>
           <span className="td">Nachfolger</span>
         </div>
-        <InputRow b={Bezeichnung} />
-        <InputRow />
-        <InputRow />
+        <InputRow {...state}/>
       </div>
     </div>
   );

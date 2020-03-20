@@ -7,7 +7,7 @@ import {
   changeNachfolger
 } from '../actions/actions.js';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   state
 });
 
