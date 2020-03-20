@@ -1,23 +1,23 @@
 import { connect } from 'react-redux';
 import InputField from '../components/InputField.js';
 import {
-    changeNr,
+  changeNr,
   changeBezeichnung,
   changeDauer,
   changeVorgänger,
   changeNachfolger
 } from '../actions/actions.js';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state
 });
 
 const mapDispatchToProps = dispatch => ({
-    changeNr: value => dispatch(changeNr(value)),
-  changeBezeichnung: value => dispatch(changeBezeichnung(value)),
-  changeDauer: value => dispatch(changeDauer(value)),
-  changeVorgänger: array => dispatch(changeVorgänger(array)),
-  changeNachfolger: array => dispatch(changeNachfolger(array))
+  changeNr: (value, idx) => dispatch(changeNr(value, idx)),
+  changeBezeichnung: (value, idx) => dispatch(changeBezeichnung(value, idx)),
+  changeDauer: (value, idx) => dispatch(changeDauer(value, idx)),
+  changeVorgänger: (array, idx) => dispatch(changeVorgänger(array, idx)),
+  changeNachfolger: (array, idx) => dispatch(changeNachfolger(array, idx))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputField);

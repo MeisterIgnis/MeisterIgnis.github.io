@@ -1,5 +1,5 @@
 import {
-    CHANGE_NR,
+  CHANGE_NR,
   CHANGE_BEZEICHNUNG,
   CHANGE_DAUER,
   CHANGE_VORGÄNGER,
@@ -7,23 +7,43 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  Nr: 0,
-  Bezeichnung: 'Laufen',
-  Dauer: 4,
-  Vorgänger: [1],
-  Nachfolger: [0]
+  nodes: [
+    {
+      Nr: 0,
+      Bezeichnung: 'Dehnen',
+      Dauer: 10,
+      Vorgänger: [],
+      Nachfolger: [1]
+    },
+    {
+      Nr: 1,
+      Bezeichnung: 'Laufen',
+      Dauer: 30,
+      Vorgänger: [0],
+      Nachfolger: [2]
+    },
+    {
+      Nr: 2,
+      Bezeichnung: 'Pause',
+      Dauer: 5,
+      Vorgänger: [1, 2],
+      Nachfolger: []
+    }
+  ]
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case CHANGE_NR: {
-        var Nr = action.payload.value;
-        return {
-          ...state,
-          Nr
-        };
-      }
+      var idx = action.payload.idx;
+      var Nr = action.payload.value;
+      return {
+        ...state,
+        Nr
+      };
+    }
     case CHANGE_BEZEICHNUNG: {
+      var idx = action.payload.idx;
       var Bezeichnung = action.payload.value;
       return {
         ...state,
@@ -31,6 +51,7 @@ export default function(state = initialState, action) {
       };
     }
     case CHANGE_DAUER: {
+      var idx = action.payload.idx;
       var Dauer = action.payload.value;
       return {
         ...state,
@@ -38,6 +59,7 @@ export default function(state = initialState, action) {
       };
     }
     case CHANGE_VORGÄNGER: {
+      var idx = action.payload.idx;
       var Vorgänger = action.payload.array;
       return {
         ...state,
@@ -45,10 +67,11 @@ export default function(state = initialState, action) {
       };
     }
     case CHANGE_NACHFOLGER: {
+      var idx = action.payload.idx;
       var Nachfolger = action.payload.array;
       return {
-        ...state,
-        Nachfolger
+        ...state
+        //state[idx].Nachfolger = Nachfolger
       };
     }
     default: {

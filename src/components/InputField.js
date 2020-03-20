@@ -1,34 +1,68 @@
 import React from 'react';
 import '../css/input.css';
 
-const InputRow = (state) => {
-  console.table(state)
-  const {Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger} = state.state
-  const {changeNr, changeBezeichnung, changeDauer, changeVorgänger, changeNachfolger} = state
+const InputRow = node => {
+  console.log(node);
+  const { Nr, Bezeichnung, Dauer, Vorgänger, Nachfolger } = node.data;
+  const {
+    changeNr,
+    changeBezeichnung,
+    changeDauer,
+    changeVorgänger,
+    changeNachfolger
+  } = node;
+
+  var vorG = '';
+  var nachV = '';
+  Vorgänger.forEach(e => {
+    vorG += e.toString() + ', ';
+  });
+  Nachfolger.forEach(e => {
+    nachV += e.toString() + ', ';
+  });
+
+  vorG = vorG.substring(0, vorG.length - 2);
+  nachV = nachV.substring(0, nachV.length - 2);
 
   return (
     <div className="tr">
       <span className="td">
-        <input type="text" defaultValue={Nr} onChange={e => changeNr(e.target.value)}></input>
+        <input type="text" value={Nr}></input>
       </span>
       <span className="td">
-        <input type="text" defaultValue={Bezeichnung} onChange={e => changeBezeichnung(e.target.value)}></input>
+        <input
+          type="text"
+          defaultValue={Bezeichnung}
+          onChange={e => changeBezeichnung(e.target.value, Nr)}
+        ></input>
       </span>
       <span className="td">
-        <input type="text" defaultValue={Dauer} onChange={e => changeDauer(e.target.value)}></input>
+        <input
+          type="text"
+          defaultValue={Dauer}
+          onChange={e => changeDauer(e.target.value, Nr)}
+        ></input>
       </span>
       <span className="td">
-        <input type="text" defaultValue={Vorgänger[Nr]} onChange={e => changeVorgänger(e.target.value)}></input>
+        <input
+          type="text"
+          defaultValue={vorG}
+          onChange={e => changeVorgänger(e.target.value, Nr)}
+        ></input>
       </span>
       <span className="td">
-        <input type="text" defaultValue={Nachfolger[Nr]} onChange={e => changeNachfolger(e.target.value)}></input>
+        <input
+          type="text"
+          defaultValue={nachV}
+          onChange={e => changeNachfolger(e.target.value, Nr)}
+        ></input>
       </span>
     </div>
   );
 };
 
 function InputField(state) {
-  console.table(state)
+  var nodes = state.state.nodes;
   return (
     <div className="table">
       <div>
@@ -39,7 +73,9 @@ function InputField(state) {
           <span className="td">Vorgänger</span>
           <span className="td">Nachfolger</span>
         </div>
-        <InputRow {...state}/>
+        {nodes.map((e, i) => (
+          <InputRow key={i} data={e} /* {...state} */ />
+        ))}
       </div>
     </div>
   );
