@@ -1,7 +1,7 @@
 import React from 'react';
 
-function OperationNode(state) {
-  const {Bezeichnung, Dauer} = state.state
+const Node = node => {
+  const { Bezeichnung, Dauer } = node.data;
   return (
     <div>
       <table className="table-auto">
@@ -23,6 +23,21 @@ function OperationNode(state) {
       </table>
     </div>
   );
+};
+
+function OperationNode(state) {
+  const { Bezeichnung, Dauer } = state.state;
+  const nodes = state.state.nodes;
+  console.table(nodes);
+  {
+    return (
+      <div>
+        {nodes.map((e, i) => (
+          <Node key={i} data={e} />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default OperationNode;

@@ -74,7 +74,7 @@ function InputField(state) {
           <span className="td">Nachfolger</span>
         </div>
         {nodes.map((e, i) => (
-          <InputRow key={i} data={e} /* {...state} */ />
+          <InputRow key={i} data={e} />
         ))}
       </div>
     </div>
