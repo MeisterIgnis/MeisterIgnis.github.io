@@ -125,13 +125,29 @@ export default function(state = initialState, action) {
       };
     }
     case ADD_NODE: {
+      var nodes = state.nodes;
+      nodes.push({
+        Nr: nodes.length,
+        Bezeichnung: '',
+        Dauer: 0,
+        Vorgänger: [],
+        Nachfolger: [],
+        FAZ: 0,
+        SAZ: 0,
+        FEZ: 0,
+        SEZ: 0
+      });
       return {
-        ...state
+        ...state,
+        nodes
       };
     }
     case DELETE_NODE: {
+      var nodes = state.nodes;
+      nodes.pop();
       return {
-        ...state
+        ...state,
+        nodes
       };
     }
     default: {
@@ -165,7 +181,7 @@ function calculateNachfolger(nodes) {
 
   nodes.forEach(node => {
     node.Vorgänger.forEach(vorG => {
-      nodes[vorG].Nachfolger.push(node.Nr);
+      nodes[vorG].Nachfolger.push(parseInt(node.Nr));
     });
   });
 
@@ -194,12 +210,21 @@ function calculateNodes(nodes) {
 
   //Calculate SAZ/SEZ
   nodes.reverse().forEach(node => {
-    if (node.Nr == 3) {
+    var biggestSEZ = 0;
+    if (node.Nr == nodes.length) {
       node.SAZ = node.FAZ;
       node.SEZ = node.FEZ;
+    } else {
+      node.Nachfolger.forEach(nachF => {
+        if (nodes[nachF].SAZ > biggestSEZ) {
+          biggestSEZ = nodes[nachF].SAZ;
+        }
+      });
+      node.SEZ = biggestSEZ;
+      node.SAZ = biggestSEZ - node.Dauer;
     }
   });
-
   nodes.reverse();
+
   return nodes;
 }
