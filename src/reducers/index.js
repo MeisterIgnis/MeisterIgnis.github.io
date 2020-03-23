@@ -113,12 +113,13 @@ export default function(state = initialState, action) {
     case CHANGE_NACHFOLGER: {
       let idx = action.payload.idx;
       var nachfolgerString = action.payload.array;
-      var Nachfolger = convertToArray(nachfolgerString);
 
-      let nodes = state.nodes;
+      var Nachfolger = convertToArray(nachfolgerString);
       nodes[idx].Nachfolger = Nachfolger;
 
+      let nodes = state.nodes;
       nodes = calculateNodes(nodes);
+
       return {
         ...state,
         nodes
@@ -189,10 +190,14 @@ function calculateNachfolger(nodes) {
 }
 
 function calculateNodes(nodes) {
-  //Calculate FAZ/FEZ
-  //TODO: Bugfix:
-  let nextFAZ = 0;
+  nodes = calculateFAZFEZ(nodes);
+  nodes = calculateSAZSEZ(nodes);
+  return nodes;
+}
+
+function calculateFAZFEZ(nodes) {
   nodes.forEach(node => {
+    let nextFAZ = 0;
     if (node.Vorgänger.length == 0) {
       node.FAZ = 0;
       node.FEZ = node.Dauer;
@@ -206,17 +211,23 @@ function calculateNodes(nodes) {
       node.FEZ = parseInt(parseInt(nextFAZ) + parseInt(node.Dauer));
     }
   });
-  console.table(nodes);
+  return nodes;
+}
 
-  //Calculate SAZ/SEZ
-  nodes.reverse().forEach(node => {
+function calculateSAZSEZ(nodes) {
+  var reversedNodes = nodes;
+
+  reversedNodes.reverse().forEach(node => {
     var biggestSEZ = 0;
-    if (node.Nr == nodes.length) {
+    if (node.Nr == nodes.length - 1) {
       node.SAZ = node.FAZ;
       node.SEZ = node.FEZ;
     } else {
       node.Nachfolger.forEach(nachF => {
-        if (nodes[nachF].SAZ > biggestSEZ) {
+        console.log(nachF);
+        console.log(nodes[nachF].SAZ);
+        console.table(nodes);
+        if (nodes[nachF].SAZ >= biggestSEZ) {
           biggestSEZ = nodes[nachF].SAZ;
         }
       });
@@ -224,7 +235,6 @@ function calculateNodes(nodes) {
       node.SAZ = biggestSEZ - node.Dauer;
     }
   });
-  nodes.reverse();
-
+  nodes = reversedNodes.reverse();
   return nodes;
 }
