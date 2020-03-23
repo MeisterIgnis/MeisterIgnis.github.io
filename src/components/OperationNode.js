@@ -3,6 +3,7 @@ import '../css/App.css';
 
 const Node = node => {
   const { Bezeichnung, Dauer, FAZ, SEZ, FEZ, SAZ } = node.data;
+  const GP = SEZ - FEZ;
   return (
     <div className="m-5">
       <table className="table-auto">
@@ -23,7 +24,7 @@ const Node = node => {
           </tr>
           <tr>
             <td className="border px-12 py-4 bg-red-300">{SAZ}</td>
-            <td className="border px-12 py-4 bg-green-300">GP</td>
+            <td className="border px-12 py-4 bg-green-300">{GP}</td>
             <td className="border px-12 py-4 bg-blue-300">{SEZ}</td>
           </tr>
         </tbody>
