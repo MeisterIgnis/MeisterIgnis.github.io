@@ -99,7 +99,7 @@ export default function(state = initialState, action) {
       var vorgängerString = action.payload.array;
       let Vorgänger = convertToArray(vorgängerString);
 
-      let nodes = state.nodes;
+      var nodes = state.nodes;
       nodes[idx].Vorgänger = Vorgänger;
 
       nodes = calculateNachfolger(nodes);
@@ -145,9 +145,11 @@ export default function(state = initialState, action) {
 function convertToArray(arrayAlsString) {
   var stringAlsArray = [];
   var idx = 0;
-  let char = arrayAlsString.charAt(index);
   for (var index = 0; index < arrayAlsString.length; index++) {
-    if (char >= '0' && char <= '9') {
+    if (
+      arrayAlsString.charAt(index) >= '0' &&
+      arrayAlsString.charAt(index) <= '9'
+    ) {
       stringAlsArray[idx] = arrayAlsString.charAt(index);
       idx++;
     }
@@ -156,14 +158,24 @@ function convertToArray(arrayAlsString) {
   return stringAlsArray;
 }
 
-function calculateNachfolger(nodes) {}
+function calculateNachfolger(nodes) {
+  nodes.forEach(node => {
+    node.Nachfolger = [];
+  });
+
+  nodes.forEach(node => {
+    node.Vorgänger.forEach(vorG => {
+      nodes[vorG].Nachfolger.push(node.Nr);
+    });
+  });
+
+  return nodes;
+}
 
 function calculateNodes(nodes) {
   //Calculate FAZ/FEZ
-  //TODO: der kleine Rest --- Welche Reihenfolge beim berechnen???
+  //TODO: Bugfix:
   let nextFAZ = 0;
-  var nextFEZ = 0;
-  // Ignorieren des Nachfolgers, Nachfolger und Vorgänger sind von einander abhängig
   nodes.forEach(node => {
     if (node.Vorgänger.length == 0) {
       node.FAZ = 0;
@@ -173,17 +185,15 @@ function calculateNodes(nodes) {
         if (nodes[vorG].FEZ > nextFAZ) {
           nextFAZ = nodes[vorG].FEZ;
         }
-        console.table(vorG);
       });
       node.FAZ = parseInt(nextFAZ);
-      node.FEZ = parseInt(nextFAZ) + parseInt(node.Dauer);
+      node.FEZ = parseInt(parseInt(nextFAZ) + parseInt(node.Dauer));
     }
   });
   console.table(nodes);
 
   //Calculate SAZ/SEZ
   nodes.reverse().forEach(node => {
-    console.log(node.Nr);
     if (node.Nr == 3) {
       node.SAZ = node.FAZ;
       node.SEZ = node.FEZ;
