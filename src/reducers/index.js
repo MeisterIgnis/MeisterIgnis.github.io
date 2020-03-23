@@ -16,7 +16,7 @@ const initialState = {
       Bezeichnung: 'Dehnen',
       Dauer: 10,
       Vorgänger: [],
-      Nachfolger: [1],
+      Nachfolger: [],
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
@@ -26,8 +26,8 @@ const initialState = {
       Nr: 1,
       Bezeichnung: 'Laufen',
       Dauer: 30,
-      Vorgänger: [0],
-      Nachfolger: [2],
+      Vorgänger: [],
+      Nachfolger: [],
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
@@ -37,8 +37,8 @@ const initialState = {
       Nr: 2,
       Bezeichnung: 'Pause',
       Dauer: 5,
-      Vorgänger: [1],
-      Nachfolger: [3],
+      Vorgänger: [],
+      Nachfolger: [],
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
@@ -48,7 +48,7 @@ const initialState = {
       Nr: 3,
       Bezeichnung: 'Wiederholen',
       Dauer: 200,
-      Vorgänger: [2],
+      Vorgänger: [],
       Nachfolger: [],
       FAZ: 0,
       SAZ: 0,
@@ -102,6 +102,8 @@ export default function(state = initialState, action) {
       let nodes = state.nodes;
       nodes[idx].Vorgänger = Vorgänger;
 
+      nodes = calculateNachfolger(nodes);
+
       nodes = calculateNodes(nodes);
       return {
         ...state,
@@ -154,14 +156,15 @@ function convertToArray(arrayAlsString) {
   return stringAlsArray;
 }
 
+function calculateNachfolger(nodes) {}
+
 function calculateNodes(nodes) {
+  //Calculate FAZ/FEZ
   //TODO: der kleine Rest --- Welche Reihenfolge beim berechnen???
-  var nextFAZ = 0;
+  let nextFAZ = 0;
   var nextFEZ = 0;
-
+  // Ignorieren des Nachfolgers, Nachfolger und Vorgänger sind von einander abhängig
   nodes.forEach(node => {
-    console.log(node.Vorgänger.length);
-
     if (node.Vorgänger.length == 0) {
       node.FAZ = 0;
       node.FEZ = node.Dauer;
@@ -170,11 +173,23 @@ function calculateNodes(nodes) {
         if (nodes[vorG].FEZ > nextFAZ) {
           nextFAZ = nodes[vorG].FEZ;
         }
+        console.table(vorG);
       });
       node.FAZ = parseInt(nextFAZ);
       node.FEZ = parseInt(nextFAZ) + parseInt(node.Dauer);
     }
   });
+  console.table(nodes);
 
+  //Calculate SAZ/SEZ
+  nodes.reverse().forEach(node => {
+    console.log(node.Nr);
+    if (node.Nr == 3) {
+      node.SAZ = node.FAZ;
+      node.SEZ = node.FEZ;
+    }
+  });
+
+  nodes.reverse();
   return nodes;
 }
