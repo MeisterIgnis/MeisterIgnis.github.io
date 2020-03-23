@@ -231,19 +231,12 @@ function calculateFAZFEZ(nodes) {
 //Confusion Overload
 function calculateSAZSEZ(nodes) {
   var reversedNodes = nodes;
-  var biggestFEZ = 0;
   reversedNodes.reverse();
 
   reversedNodes.forEach(node => {
     var biggestSEZ = 0;
     if (node.Nachfolger.length === 0) {
-      nodes.forEach(node => {
-        if (biggestFEZ < node.FEZ) {
-          biggestFEZ = node.FEZ;
-        }
-      });
-
-      node.SEZ = node.FEZ;
+      node.SEZ = findBiggestSEZ(nodes);
 
       node.SAZ = node.SEZ - node.Dauer;
     } else {
@@ -258,4 +251,9 @@ function calculateSAZSEZ(nodes) {
   });
   nodes = reversedNodes.reverse();
   return nodes;
+}
+
+function findBiggestSEZ(nodes) {
+  //TODO:
+  return 0;
 }
