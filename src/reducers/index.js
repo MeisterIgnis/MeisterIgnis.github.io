@@ -75,7 +75,6 @@ export default function(state = initialState, action) {
       let nodes = state.nodes;
       nodes[idx].Bezeichnung = Bezeichnung;
 
-      nodes = calculateNodes(nodes);
       return {
         ...state,
         nodes
@@ -99,7 +98,7 @@ export default function(state = initialState, action) {
       var vorgängerString = action.payload.array;
       let Vorgänger = convertToArray(vorgängerString);
 
-      var nodes = state.nodes;
+      let nodes = state.nodes;
       nodes[idx].Vorgänger = Vorgänger;
 
       nodes = calculateNachfolger(nodes);
@@ -113,13 +112,16 @@ export default function(state = initialState, action) {
     case CHANGE_NACHFOLGER: {
       let idx = action.payload.idx;
       var nachfolgerString = action.payload.array;
-
       var Nachfolger = convertToArray(nachfolgerString);
-      nodes[idx].Nachfolger = Nachfolger;
 
       let nodes = state.nodes;
+      nodes[idx].Nachfolger = Nachfolger;
+
+      nodes = calculateVorgänger(nodes);
+
       nodes = calculateNodes(nodes);
 
+      console.table(nodes);
       return {
         ...state,
         nodes
@@ -185,7 +187,19 @@ function calculateNachfolger(nodes) {
       nodes[vorG].Nachfolger.push(parseInt(node.Nr));
     });
   });
+  return nodes;
+}
 
+function calculateVorgänger(nodes) {
+  nodes.forEach(node => {
+    node.Vorgänger = [];
+  });
+
+  nodes.forEach(node => {
+    node.Nachfolger.forEach(nachV => {
+      nodes[nachV].Vorgänger.push(parseInt(node.Nr));
+    });
+  });
   return nodes;
 }
 
@@ -198,7 +212,7 @@ function calculateNodes(nodes) {
 function calculateFAZFEZ(nodes) {
   nodes.forEach(node => {
     let nextFAZ = 0;
-    if (node.Vorgänger.length == 0) {
+    if (node.Vorgänger.length === 0) {
       node.FAZ = 0;
       node.FEZ = node.Dauer;
     } else {
@@ -217,10 +231,11 @@ function calculateFAZFEZ(nodes) {
 //Confusion Overload
 function calculateSAZSEZ(nodes) {
   var reversedNodes = nodes;
+  reversedNodes.reverse();
 
-  reversedNodes.reverse().forEach(node => {
+  reversedNodes.forEach(node => {
     var biggestSEZ = 0;
-    if (node.Nr == nodes.length - 1) {
+    if (node.Nachfolger.length === 0) {
       node.SAZ = node.FAZ;
       node.SEZ = node.FEZ;
     } else {
