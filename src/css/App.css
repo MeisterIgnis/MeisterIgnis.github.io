@@ -1,6 +1,7 @@
 table {
   overflow-wrap: break-word;
-  max-width: 300px;
+  max-width: 200px;
+  table-layout: fixed;
 }
 
 .container {

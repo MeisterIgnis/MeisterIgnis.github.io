@@ -21,7 +21,7 @@ const initialState = {
       SAZ: 0,
       FEZ: 0,
       SEZ: 0,
-      Position: []
+      Position: [1, 1]
     },
     {
       Nr: 1,
@@ -33,7 +33,7 @@ const initialState = {
       SAZ: 0,
       FEZ: 0,
       SEZ: 0,
-      Position: []
+      Position: [1, 2]
     },
     {
       Nr: 2,
@@ -45,7 +45,7 @@ const initialState = {
       SAZ: 0,
       FEZ: 0,
       SEZ: 0,
-      Position: []
+      Position: [1, 3]
     },
     {
       Nr: 3,
@@ -57,7 +57,7 @@ const initialState = {
       SAZ: 0,
       FEZ: 0,
       SEZ: 0,
-      Position: []
+      Position: [1, 4]
     }
   ]
 };

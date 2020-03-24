@@ -10,16 +10,22 @@ const Node = node => {
   console.log(gridNumber);
   return (
     <div className={gridNumber}>
-      <table className="w-2">
+      <table className="max-w-200 min-w-200 table-fixed" width="350">
         <tbody>
           <tr>
-            <td className="border px-12 py-4 bg-red-200 truncate">{FAZ}</td>
-            <td className="border px-12 py-4 bg-green-200 truncate">{Dauer}</td>
-            <td className="border px-12 py-4 bg-blue-200 truncate">{FEZ}</td>
+            <td className="border px-12 py-4 bg-red-200 truncate w-100 h-10">
+              {FAZ}
+            </td>
+            <td className="border px-12 py-4 bg-green-200 truncate w-100 h-10">
+              {Dauer}
+            </td>
+            <td className="border px-4 py-4 bg-blue-200 truncate w-100 h-10">
+              {FEZ}
+            </td>
           </tr>
           <tr>
             <td
-              className="border px-12 py-4 bg-gray-200 truncate w-16"
+              className="border px-12 py-4 bg-gray-200 truncate w-100 h-10"
               colSpan="3"
               align="center"
             >
@@ -27,9 +33,15 @@ const Node = node => {
             </td>
           </tr>
           <tr>
-            <td className="border px-12 py-4 bg-red-300 truncate">{SAZ}</td>
-            <td className="border px-12 py-4 bg-green-300 truncate">{GP}</td>
-            <td className="border px-12 py-4 bg-blue-300 truncate">{SEZ}</td>
+            <td className="border px-12 py-4 bg-red-300 truncate w-100 h-10">
+              {SAZ}
+            </td>
+            <td className="border px-12 py-4 bg-green-300 truncate w-100 h-10">
+              {GP}
+            </td>
+            <td className="border px-12 py-4 bg-blue-300 truncate w-100 h-10">
+              {SEZ}
+            </td>
           </tr>
         </tbody>
       </table>
