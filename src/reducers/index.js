@@ -234,9 +234,16 @@ function calculateSAZSEZ(nodes) {
   reversedNodes.reverse();
 
   reversedNodes.forEach(node => {
+    node.SAZ = 0;
+    node.SEZ = 0;
+  });
+  reversedNodes.forEach(node => {
     var biggestSEZ = 0;
     if (node.Nachfolger.length === 0) {
       node.SEZ = findBiggestSEZ(nodes);
+      if (node.SEZ < node.FEZ) {
+        node.SEZ = node.FEZ;
+      }
 
       node.SAZ = node.SEZ - node.Dauer;
     } else {
@@ -248,12 +255,20 @@ function calculateSAZSEZ(nodes) {
       node.SEZ = biggestSEZ;
       node.SAZ = biggestSEZ - node.Dauer;
     }
+    console.table(node);
   });
+
   nodes = reversedNodes.reverse();
   return nodes;
 }
 
 function findBiggestSEZ(nodes) {
-  //TODO:
-  return 0;
+  var biggestSEZ = 0;
+  nodes.forEach(node => {
+    if (node.SEZ > biggestSEZ) {
+      biggestSEZ = node.SEZ;
+    }
+  });
+  console.log('biggest SEZ: ' + biggestSEZ);
+  return biggestSEZ;
 }

@@ -39,7 +39,6 @@ function OperationNode(state) {
   var firstColumn = [];
   var secondColumn = [];
   var lastColumn = [];
-  console.table(nodes);
 
   nodes.forEach(node => {
     if (node.Nachfolger.length === 0) {
@@ -53,7 +52,6 @@ function OperationNode(state) {
 
   var className = 'grid grid-cols-4' + ' gap-4'; // + numberOfRows;
 
-  console.log(numberOfRows);
   return (
     <div className={className}>
       {nodes.map((e, i) => (
