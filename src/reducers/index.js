@@ -111,7 +111,6 @@ export default function(state = initialState, action) {
 
       nodes = calculatePositions(nodes);
 
-      console.table(nodes);
       return {
         ...state,
         nodes
