@@ -20,7 +20,8 @@ const initialState = {
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
-      SEZ: 0
+      SEZ: 0,
+      Position: []
     },
     {
       Nr: 1,
@@ -31,7 +32,8 @@ const initialState = {
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
-      SEZ: 0
+      SEZ: 0,
+      Position: []
     },
     {
       Nr: 2,
@@ -42,7 +44,8 @@ const initialState = {
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
-      SEZ: 0
+      SEZ: 0,
+      Position: []
     },
     {
       Nr: 3,
@@ -53,7 +56,8 @@ const initialState = {
       FAZ: 0,
       SAZ: 0,
       FEZ: 0,
-      SEZ: 0
+      SEZ: 0,
+      Position: []
     }
   ]
 };
@@ -104,6 +108,10 @@ export default function(state = initialState, action) {
       nodes = calculateNachfolger(nodes);
 
       nodes = calculateNodes(nodes);
+
+      nodes = calculatePositions(nodes);
+
+      console.table(nodes);
       return {
         ...state,
         nodes
@@ -121,7 +129,7 @@ export default function(state = initialState, action) {
 
       nodes = calculateNodes(nodes);
 
-      console.table(nodes);
+      nodes = calculatePositions(nodes);
       return {
         ...state,
         nodes
@@ -138,7 +146,8 @@ export default function(state = initialState, action) {
         FAZ: 0,
         SAZ: 0,
         FEZ: 0,
-        SEZ: 0
+        SEZ: 0,
+        Position: []
       });
       return {
         ...state,
@@ -255,7 +264,6 @@ function calculateSAZSEZ(nodes) {
       node.SEZ = biggestSEZ;
       node.SAZ = biggestSEZ - node.Dauer;
     }
-    console.table(node);
   });
 
   nodes = reversedNodes.reverse();
@@ -269,6 +277,23 @@ function findBiggestSEZ(nodes) {
       biggestSEZ = node.SEZ;
     }
   });
-  console.log('biggest SEZ: ' + biggestSEZ);
   return biggestSEZ;
+}
+
+function calculatePositions(nodes) {
+  var idx = 0;
+  var idx2 = 0;
+  nodes.forEach(node => {
+    var newPosition = [0, 0];
+    if (node.Vorgänger.length == 0) {
+      idx++;
+      newPosition = [1, idx];
+    } else if (node.Nachfolger.length == 0) {
+      idx2++;
+      newPosition = [4, idx2];
+    }
+    node.Position = newPosition;
+  });
+
+  return nodes;
 }

@@ -2,3 +2,86 @@ table {
   overflow-wrap: break-word;
   max-width: 300px;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-gap: 50px;
+}
+
+.elem11 {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.elem12 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.elem13 {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.elem14 {
+  grid-row: 1;
+  grid-column: 4;
+}
+.elem21 {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.elem22 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.elem23 {
+  grid-row: 2;
+  grid-column: 3;
+}
+
+.elem24 {
+  grid-row: 2;
+  grid-column: 4;
+}
+.elem31 {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.elem32 {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+.elem33 {
+  grid-row: 3;
+  grid-column: 3;
+}
+
+.elem34 {
+  grid-row: 3;
+  grid-column: 4;
+}
+.elem41 {
+  grid-row: 4;
+  grid-column: 1;
+}
+
+.elem42 {
+  grid-row: 4;
+  grid-column: 2;
+}
+
+.elem43 {
+  grid-row: 4;
+  grid-column: 3;
+}
+
+.elem44 {
+  grid-row: 4;
+  grid-column: 4;
+}

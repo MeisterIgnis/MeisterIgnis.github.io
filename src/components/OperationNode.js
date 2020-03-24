@@ -2,11 +2,15 @@ import React from 'react';
 import '../css/App.css';
 
 const Node = node => {
-  const { Bezeichnung, Dauer, FAZ, SEZ, FEZ, SAZ } = node.data;
+  const { Nr, Bezeichnung, Dauer, FAZ, SEZ, FEZ, SAZ, Position } = node.data;
   const GP = SEZ - FEZ;
+
+  const index = Nr + 1;
+  const gridNumber = 'm-5 w-2 elem' + Position[1] + Position[0];
+  console.log(gridNumber);
   return (
-    <div className="m-5">
-      <table className="table-auto w-2">
+    <div className={gridNumber}>
+      <table className="w-2">
         <tbody>
           <tr>
             <td className="border px-12 py-4 bg-red-200 truncate">{FAZ}</td>
@@ -50,10 +54,10 @@ function OperationNode(state) {
   });
   numberOfRows++;
 
-  var className = 'grid grid-cols-4' + ' gap-4'; // + numberOfRows;
+  var otherClassName = 'container';
 
   return (
-    <div className={className}>
+    <div className={otherClassName}>
       {nodes.map((e, i) => (
         <Node key={i} data={e} />
       ))}
