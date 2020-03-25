@@ -13,14 +13,12 @@ const Node = node => {
       <table className="max-w-200 min-w-200 table-fixed" width="350">
         <tbody>
           <tr>
-            <td className="border px-12 py-4 bg-red-200 truncate w-100 h-10">
-              {FAZ}
-            </td>
-            <td className="border px-12 py-4 bg-green-200 truncate w-100 h-10">
+            <td className="border px-12 py-4 bg-red-200 w-100 h-10">{FAZ}</td>
+            <td className="border px-12 py-4 bg-green-200 w-100 h-10">
               {Dauer}
             </td>
             <td
-              className="border px-4 py-4 bg-blue-200 truncate w-100 h-10"
+              className="border px-4 py-4 bg-blue-200 w-100 h-10"
               align="center"
             >
               {FEZ}
@@ -28,7 +26,7 @@ const Node = node => {
           </tr>
           <tr>
             <td
-              className="border px-12 py-4 bg-gray-200 truncate w-100 h-10"
+              className="border px-12 py-4 bg-gray-200 w-100 h-10"
               colSpan="3"
               align="center"
             >
@@ -36,15 +34,9 @@ const Node = node => {
             </td>
           </tr>
           <tr>
-            <td className="border px-12 py-4 bg-red-300 truncate w-100 h-10">
-              {SAZ}
-            </td>
-            <td className="border px-12 py-4 bg-green-300 truncate w-100 h-10">
-              {GP}
-            </td>
-            <td className="border px-12 py-4 bg-blue-300 truncate w-100 h-10">
-              {SEZ}
-            </td>
+            <td className="border px-12 py-4 bg-red-300 w-100 h-10">{SAZ}</td>
+            <td className="border px-12 py-4 bg-green-300 w-100 h-10">{GP}</td>
+            <td className="border px-12 py-4 bg-blue-300 w-100 h-10">{SEZ}</td>
           </tr>
         </tbody>
       </table>
@@ -69,15 +61,28 @@ function OperationNode(state) {
   });
   numberOfRows++;
 
-  var otherClassName = 'container';
+  var className = 'container';
+
+  className += findHighestColumnPosition(nodes);
 
   return (
-    <div className={otherClassName}>
+    <div className={className}>
       {nodes.map((e, i) => (
         <Node key={i} data={e} />
       ))}
     </div>
   );
+}
+
+function findHighestColumnPosition(nodes) {
+  var highestColumnPosition = 1;
+  nodes.forEach(node => {
+    if (node.Position[0] > highestColumnPosition) {
+      highestColumnPosition = node.Position[0];
+    }
+  });
+  console.log(highestColumnPosition);
+  return highestColumnPosition;
 }
 
 export default OperationNode;

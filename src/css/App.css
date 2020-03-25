@@ -4,7 +4,22 @@ table {
   overflow: visible;
 }
 
-.container {
+.container1 {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 50px;
+}
+.container2 {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 50px;
+}
+.container3 {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 50px;
+}
+.container4 {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-gap: 50px;

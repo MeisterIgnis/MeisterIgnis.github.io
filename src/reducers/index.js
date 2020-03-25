@@ -279,7 +279,7 @@ function findBiggestSEZ(nodes) {
   return biggestSEZ;
 }
 
-function calculatePositions(nodes) {
+function oldCalculatePositions(nodes) {
   var idx = 0;
   var idx2 = 0;
   nodes.forEach(node => {
@@ -295,4 +295,41 @@ function calculatePositions(nodes) {
   });
 
   return nodes;
+}
+
+function calculatePositions(nodes) {
+  var idx = 0;
+  var idx2 = 0;
+  nodes.forEach(node => {
+    var newPosition = [0, 0];
+    if (node.Vorgänger.length == 0) {
+      idx++;
+      newPosition = [1, idx];
+    } else {
+      var vorgängerMitHöchsteSEZNodeNr = 0;
+      node.Vorgänger.forEach(vorG => {
+        vorgängerMitHöchsteSEZNodeNr = whoHasBiggestSEZ(nodes);
+      });
+      console.log(nodes[vorgängerMitHöchsteSEZNodeNr].Nr);
+      newPosition = [
+        nodes[vorgängerMitHöchsteSEZNodeNr].Position[0] + 1,
+        nodes[vorgängerMitHöchsteSEZNodeNr].Position[1]
+      ];
+    }
+    node.Position = newPosition;
+  });
+
+  return nodes;
+}
+
+function whoHasBiggestSEZ(nodes) {
+  var biggestSEZ = 0;
+  var whoHasNodeNr = 0;
+  nodes.forEach(node => {
+    if (node.SEZ > biggestSEZ) {
+      biggestSEZ = node.SEZ;
+      whoHasNodeNr = node.Nr;
+    }
+  });
+  return whoHasNodeNr - 1;
 }
