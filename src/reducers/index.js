@@ -279,7 +279,7 @@ function findBiggestSEZ(nodes) {
   return biggestSEZ;
 }
 
-function oldCalculatePositions(nodes) {
+function calculatePositions(nodes) {
   var idx = 0;
   var idx2 = 0;
   nodes.forEach(node => {
@@ -297,7 +297,7 @@ function oldCalculatePositions(nodes) {
   return nodes;
 }
 
-function calculatePositions(nodes) {
+function newCalculatePositions(nodes) {
   var idx = 0;
   var idx2 = 0;
   nodes.forEach(node => {
