@@ -8,63 +8,9 @@ import {
   DELETE_NODE
 } from '../actions/actionTypes';
 
-const initialState = {
-  //TODO: ADD FAZ; FEZ; SAZ; SEZ;
-  nodes: [
-    {
-      Nr: 0,
-      Bezeichnung: 'Dehnen',
-      Dauer: 10,
-      Vorgänger: [],
-      Nachfolger: [],
-      FAZ: 0,
-      SAZ: 0,
-      FEZ: 0,
-      SEZ: 0,
-      Position: [1, 1]
-    },
-    {
-      Nr: 1,
-      Bezeichnung: 'Laufen',
-      Dauer: 30,
-      Vorgänger: [],
-      Nachfolger: [],
-      FAZ: 0,
-      SAZ: 0,
-      FEZ: 0,
-      SEZ: 0,
-      Position: [1, 2]
-    },
-    {
-      Nr: 2,
-      Bezeichnung: 'Pause',
-      Dauer: 5,
-      Vorgänger: [],
-      Nachfolger: [],
-      FAZ: 0,
-      SAZ: 0,
-      FEZ: 0,
-      SEZ: 0,
-      Position: [1, 3]
-    },
-    {
-      Nr: 3,
-      Bezeichnung: 'Wiederholen',
-      Dauer: 200,
-      Vorgänger: [],
-      Nachfolger: [],
-      FAZ: 0,
-      SAZ: 0,
-      FEZ: 0,
-      SEZ: 0,
-      Position: [1, 4]
-    }
-  ]
-};
-
-//TODO: FUNCTION: CALCULATE FAZ; FEZ; SAZ; SEZ;
-
-export default function(state = initialState, action) {
+export default function(state = require('./initState.json'), action) {
+  console.log(state);
+  console.log(require('./initState.csv').value);
   switch (action.type) {
     //Macht eigentlich keinen Sinn
     case CHANGE_NR: {
