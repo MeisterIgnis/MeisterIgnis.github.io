@@ -19,7 +19,10 @@ const Node = node => {
             <td className="border px-12 py-4 bg-green-200 truncate w-100 h-10">
               {Dauer}
             </td>
-            <td className="border px-4 py-4 bg-blue-200 truncate w-100 h-10">
+            <td
+              className="border px-4 py-4 bg-blue-200 truncate w-100 h-10"
+              align="center"
+            >
               {FEZ}
             </td>
           </tr>
