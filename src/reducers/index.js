@@ -323,8 +323,9 @@ function newCalculatePositions(nodes) {
       console.log(nodes[vorgängerMitHöchsteSEZNodeNr].Nr);
       newPosition = [
         nodes[vorgängerMitHöchsteSEZNodeNr].Position[0] + 1,
-        nodes[vorgängerMitHöchsteSEZNodeNr].Position[1]
+        nodes[vorgängerMitHöchsteSEZNodeNr].Position[1] + idx2
       ];
+      idx2++;
     }
     node.Position = newPosition;
   });
