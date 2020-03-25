@@ -288,11 +288,18 @@ function calculatePositions(nodes) {
       idx++;
       newPosition = [1, idx];
     } else {
-      idx2++;
-      newPosition = [
-        nodes[node.Vorgänger[0]].Position[0] + 1,
-        nodes[node.Vorgänger[0]].Position[1]
-      ];
+      if (nodes[node.Vorgänger[0]].Nachfolger.length == 1) {
+        newPosition = [
+          nodes[node.Vorgänger[0]].Position[0] + 1,
+          nodes[node.Vorgänger[0]].Position[1]
+        ];
+      } else {
+        newPosition = [
+          nodes[node.Vorgänger[0]].Position[0] + 1,
+          nodes[node.Vorgänger[0]].Position[1] + idx2
+        ];
+        idx2++;
+      }
     }
     node.Position = newPosition;
   });
@@ -334,5 +341,5 @@ function whoHasBiggestSEZ(nodes) {
       whoHasNodeNr = node.Nr;
     }
   });
-  return whoHasNodeNr - 1;
+  return whoHasNodeNr;
 }

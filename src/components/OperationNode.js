@@ -70,6 +70,7 @@ function OperationNode(state) {
       {nodes.map((e, i) => (
         <Node key={i} data={e} />
       ))}
+      <svg width="500" height="500"></svg>
     </div>
   );
 }
