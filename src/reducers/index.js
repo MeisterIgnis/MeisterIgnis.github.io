@@ -287,9 +287,12 @@ function calculatePositions(nodes) {
     if (node.Vorgänger.length == 0) {
       idx++;
       newPosition = [1, idx];
-    } else if (node.Nachfolger.length == 0) {
+    } else {
       idx2++;
-      newPosition = [4, idx2];
+      newPosition = [
+        nodes[node.Vorgänger[0]].Position[0] + 1,
+        nodes[node.Vorgänger[0]].Position[1]
+      ];
     }
     node.Position = newPosition;
   });
