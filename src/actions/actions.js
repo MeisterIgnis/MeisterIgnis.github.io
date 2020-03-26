@@ -7,7 +7,9 @@ import {
   ADD_NODE,
   DELETE_NODE,
   DOWNLOAD_JSON,
-  DOWNLOAD_CSV
+  DOWNLOAD_CSV,
+  UPLOAD_JSON,
+  UPLOAD_CSV
 } from './actionTypes';
 
 export const addNode = () => ({
@@ -49,4 +51,13 @@ export const downloadJSON = () => ({
 
 export const downloadCSV = () => ({
   type: DOWNLOAD_CSV
+});
+
+export const uploadJSON = file => ({
+  type: UPLOAD_JSON,
+  payload: { file }
+});
+export const uploadCSV = file => ({
+  type: UPLOAD_CSV,
+  payload: { file }
 });

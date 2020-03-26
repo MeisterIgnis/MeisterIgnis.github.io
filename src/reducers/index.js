@@ -7,7 +7,9 @@ import {
   ADD_NODE,
   DELETE_NODE,
   DOWNLOAD_JSON,
-  DOWNLOAD_CSV
+  DOWNLOAD_CSV,
+  UPLOAD_JSON,
+  UPLOAD_CSV
 } from '../actions/actionTypes';
 
 export default function(state = require('./initState.json'), action) {
@@ -119,6 +121,22 @@ export default function(state = require('./initState.json'), action) {
     case DOWNLOAD_CSV: {
       var nodes = state.nodes;
       exportAsCSV(nodes);
+      return {
+        ...state
+      };
+    }
+    case UPLOAD_JSON: {
+      console.log(action.payload.file);
+
+      var fileReader = new FileReader();
+      var j = fileReader.readAsText(action.payload.file);
+      console.log(j);
+      return {
+        ...state
+      };
+    }
+    case UPLOAD_CSV: {
+      console.log(action.payload.file);
       return {
         ...state
       };

@@ -76,7 +76,9 @@ function InputField({
   addNode,
   deleteNode,
   downloadJSON,
-  downloadCSV
+  downloadCSV,
+  uploadJSON,
+  uploadCSV
 }) {
   var nodes = state.nodes;
   const actions = {
@@ -86,7 +88,9 @@ function InputField({
     changeVorgänger,
     changeNachfolger,
     downloadJSON,
-    downloadCSV
+    downloadCSV,
+    uploadJSON,
+    uploadCSV
   };
   return (
     <div className="table">
@@ -125,6 +129,18 @@ function InputField({
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         value="Download CSV"
         onClick={downloadCSV}
+      ></input>
+      <input
+        type="file"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        name="Upload JSON"
+        onChange={e => uploadJSON(e.target.files)}
+      ></input>
+      <input
+        type="file"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        name="Upwnload CSV"
+        onChange={e => uploadCSV(e.target.files)}
       ></input>
     </div>
   );

@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bac4b7bc47336c0442711543356ce83f",
+    "revision": "75ca5a7a0b900e4dd6a7d807369cba48",
     "url": "/netzplan/index.html"
   },
   {
-    "revision": "fc2186bcd50b37b92da6",
+    "revision": "1216cf70de59a0807580",
     "url": "/netzplan/static/css/main.5f9097d6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/netzplan/static/js/2.42188f25.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "fc2186bcd50b37b92da6",
-    "url": "/netzplan/static/js/main.6de8a1e6.chunk.js"
+    "revision": "1216cf70de59a0807580",
+    "url": "/netzplan/static/js/main.f2b14f59.chunk.js"
   },
   {
     "revision": "c03c8f2419e9196fec49",

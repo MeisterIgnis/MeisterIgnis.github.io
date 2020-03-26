@@ -8,3 +8,5 @@ export const ADD_NODE = 'ADD_NODE';
 export const DELETE_NODE = 'DELETE_NODE';
 export const DOWNLOAD_JSON = 'DOWNLOAD_JSON';
 export const DOWNLOAD_CSV = 'DOWNLOAD_CSV';
+export const UPLOAD_JSON = 'UPLOAD_JSON';
+export const UPLOAD_CSV = 'UPLOAD_CSV';

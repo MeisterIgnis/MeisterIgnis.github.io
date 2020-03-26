@@ -9,7 +9,9 @@ import {
   addNode,
   deleteNode,
   downloadJSON,
-  downloadCSV
+  downloadCSV,
+  uploadJSON,
+  uploadCSV
 } from '../actions/actions.js';
 
 const mapStateToProps = state => ({
@@ -25,7 +27,9 @@ const mapDispatchToProps = dispatch => ({
   addNode: () => dispatch(addNode()),
   deleteNode: () => dispatch(deleteNode()),
   downloadJSON: () => dispatch(downloadJSON()),
-  downloadCSV: () => dispatch(downloadCSV())
+  downloadCSV: () => dispatch(downloadCSV()),
+  uploadJSON: file => dispatch(uploadJSON(file)),
+  uploadCSV: file => dispatch(uploadCSV(file))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputField);
