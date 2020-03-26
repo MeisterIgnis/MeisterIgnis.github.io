@@ -9,8 +9,6 @@ import {
 } from '../actions/actionTypes';
 
 export default function(state = require('./initState.json'), action) {
-  console.log(state);
-  console.log(require('./initState.csv'));
   switch (action.type) {
     //Macht eigentlich keinen Sinn
     case CHANGE_NR: {

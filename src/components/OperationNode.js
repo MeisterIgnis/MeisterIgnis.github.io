@@ -7,7 +7,6 @@ const Node = node => {
 
   const index = Nr + 1;
   const gridNumber = 'm-5 w-2 elem' + Position[1] + Position[0];
-  console.log(gridNumber);
   return (
     <div className={gridNumber}>
       <table className="max-w-200 min-w-200 table-fixed" width="350">
@@ -82,7 +81,6 @@ function findHighestColumnPosition(nodes) {
       highestColumnPosition = node.Position[0];
     }
   });
-  console.log(highestColumnPosition);
   return highestColumnPosition;
 }
 
