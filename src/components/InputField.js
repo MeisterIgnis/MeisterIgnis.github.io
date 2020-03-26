@@ -74,7 +74,8 @@ function InputField({
   changeVorgänger,
   changeNachfolger,
   addNode,
-  deleteNode
+  deleteNode,
+  downloadJSON
 }) {
   var nodes = state.nodes;
   const actions = {
@@ -82,7 +83,8 @@ function InputField({
     changeBezeichnung,
     changeDauer,
     changeVorgänger,
-    changeNachfolger
+    changeNachfolger,
+    downloadJSON
   };
   return (
     <div className="table">
@@ -109,6 +111,12 @@ function InputField({
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         value="Delete Node"
         onClick={deleteNode}
+      ></input>
+      <input
+        type="button"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        value="Download JSON"
+        onClick={downloadJSON}
       ></input>
     </div>
   );

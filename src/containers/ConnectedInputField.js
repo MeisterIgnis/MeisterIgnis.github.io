@@ -7,7 +7,8 @@ import {
   changeVorgänger,
   changeNachfolger,
   addNode,
-  deleteNode
+  deleteNode,
+  downloadJSON
 } from '../actions/actions.js';
 
 const mapStateToProps = state => ({
@@ -21,7 +22,8 @@ const mapDispatchToProps = dispatch => ({
   changeVorgänger: (array, idx) => dispatch(changeVorgänger(array, idx)),
   changeNachfolger: (array, idx) => dispatch(changeNachfolger(array, idx)),
   addNode: () => dispatch(addNode()),
-  deleteNode: () => dispatch(deleteNode())
+  deleteNode: () => dispatch(deleteNode()),
+  downloadJSON: () => dispatch(downloadJSON())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputField);

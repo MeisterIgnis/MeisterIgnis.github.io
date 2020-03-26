@@ -5,7 +5,8 @@ import {
   CHANGE_VORGÄNGER,
   CHANGE_NACHFOLGER,
   ADD_NODE,
-  DELETE_NODE
+  DELETE_NODE,
+  DOWNLOAD_JSON
 } from './actionTypes';
 
 export const addNode = () => ({
@@ -39,4 +40,8 @@ export const changeVorgänger = (array, idx) => ({
 export const changeNachfolger = (array, idx) => ({
   type: CHANGE_NACHFOLGER,
   payload: { array, idx }
+});
+
+export const downloadJSON = () => ({
+  type: DOWNLOAD_JSON
 });
