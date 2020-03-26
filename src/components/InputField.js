@@ -75,7 +75,8 @@ function InputField({
   changeNachfolger,
   addNode,
   deleteNode,
-  downloadJSON
+  downloadJSON,
+  downloadCSV
 }) {
   var nodes = state.nodes;
   const actions = {
@@ -84,7 +85,8 @@ function InputField({
     changeDauer,
     changeVorgänger,
     changeNachfolger,
-    downloadJSON
+    downloadJSON,
+    downloadCSV
   };
   return (
     <div className="table">
@@ -117,6 +119,12 @@ function InputField({
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         value="Download JSON"
         onClick={downloadJSON}
+      ></input>
+      <input
+        type="button"
+        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+        value="Download CSV"
+        onClick={downloadCSV}
       ></input>
     </div>
   );

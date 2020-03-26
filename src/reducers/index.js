@@ -6,7 +6,8 @@ import {
   CHANGE_NACHFOLGER,
   ADD_NODE,
   DELETE_NODE,
-  DOWNLOAD_JSON
+  DOWNLOAD_JSON,
+  DOWNLOAD_CSV
 } from '../actions/actionTypes';
 
 export default function(state = require('./initState.json'), action) {
@@ -108,9 +109,16 @@ export default function(state = require('./initState.json'), action) {
     }
     case DOWNLOAD_JSON: {
       var nodes = state.nodes;
-      var json = JSON.stringify(nodes);
-      exportJsonFile(json);
+      var stringToJson = JSON.stringify(nodes);
+      exportFile(stringToJson, 'data.json');
 
+      return {
+        ...state
+      };
+    }
+    case DOWNLOAD_CSV: {
+      var nodes = state.nodes;
+      exportAsCSV(nodes);
       return {
         ...state
       };
@@ -261,12 +269,11 @@ function calculatePositions(nodes) {
   return nodes;
 }
 
-function exportJsonFile(json) {
-  var filename = 'data.json';
+function exportFile(file, filename) {
   var element = document.createElement('a');
   element.setAttribute(
     'href',
-    'data:text/plain;charset=utf-8,' + encodeURIComponent(json)
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(file)
   );
   element.setAttribute('download', filename);
 
@@ -276,4 +283,9 @@ function exportJsonFile(json) {
   element.click();
 
   document.body.removeChild(element);
+}
+
+async function exportAsCSV(nodes) {
+  const ObjectsToCsv = require('objects-to-csv');
+  return exportFile(await new ObjectsToCsv(nodes).toString(), 'data.csv');
 }
