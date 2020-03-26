@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/netzplan/static/css/main.5f9097d6.chunk.css",
-    "main.js": "/netzplan/static/js/main.6834508c.chunk.js",
-    "main.js.map": "/netzplan/static/js/main.6834508c.chunk.js.map",
+    "main.js": "/netzplan/static/js/main.6de8a1e6.chunk.js",
+    "main.js.map": "/netzplan/static/js/main.6de8a1e6.chunk.js.map",
     "runtime-main.js": "/netzplan/static/js/runtime-main.378fa540.js",
     "runtime-main.js.map": "/netzplan/static/js/runtime-main.378fa540.js.map",
-    "static/js/2.be0eaf3f.chunk.js": "/netzplan/static/js/2.be0eaf3f.chunk.js",
-    "static/js/2.be0eaf3f.chunk.js.map": "/netzplan/static/js/2.be0eaf3f.chunk.js.map",
+    "static/js/2.42188f25.chunk.js": "/netzplan/static/js/2.42188f25.chunk.js",
+    "static/js/2.42188f25.chunk.js.map": "/netzplan/static/js/2.42188f25.chunk.js.map",
     "index.html": "/netzplan/index.html",
-    "precache-manifest.2206e9a9e48f3b52dc9fb17e004b78c7.js": "/netzplan/precache-manifest.2206e9a9e48f3b52dc9fb17e004b78c7.js",
+    "precache-manifest.b7e893b24a93b92005b78f0537c1393e.js": "/netzplan/precache-manifest.b7e893b24a93b92005b78f0537c1393e.js",
     "service-worker.js": "/netzplan/service-worker.js",
     "static/css/main.5f9097d6.chunk.css.map": "/netzplan/static/css/main.5f9097d6.chunk.css.map",
-    "static/js/2.be0eaf3f.chunk.js.LICENSE.txt": "/netzplan/static/js/2.be0eaf3f.chunk.js.LICENSE.txt"
+    "static/js/2.42188f25.chunk.js.LICENSE.txt": "/netzplan/static/js/2.42188f25.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.378fa540.js",
-    "static/js/2.be0eaf3f.chunk.js",
+    "static/js/2.42188f25.chunk.js",
     "static/css/main.5f9097d6.chunk.css",
-    "static/js/main.6834508c.chunk.js"
+    "static/js/main.6de8a1e6.chunk.js"
   ]
 }
