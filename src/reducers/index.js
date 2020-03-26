@@ -5,7 +5,8 @@ import {
   CHANGE_VORGÄNGER,
   CHANGE_NACHFOLGER,
   ADD_NODE,
-  DELETE_NODE
+  DELETE_NODE,
+  DOWNLOAD_JSON
 } from '../actions/actionTypes';
 
 export default function(state = require('./initState.json'), action) {
@@ -103,6 +104,15 @@ export default function(state = require('./initState.json'), action) {
       return {
         ...state,
         nodes
+      };
+    }
+    case DOWNLOAD_JSON: {
+      var nodes = state.nodes;
+      var json = JSON.stringify(nodes);
+      exportJsonFile(json);
+
+      return {
+        ...state
       };
     }
     default: {
@@ -249,4 +259,21 @@ function calculatePositions(nodes) {
   });
 
   return nodes;
+}
+
+function exportJsonFile(json) {
+  var filename = 'data.json';
+  var element = document.createElement('a');
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(json)
+  );
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
