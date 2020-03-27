@@ -126,17 +126,13 @@ export default function(state = require('./initState.json'), action) {
       };
     }
     case UPLOAD_JSON: {
-      console.log(action.payload.file);
+      var nodes = state.nodes;
+      var file = action.payload.file[0];
 
-      var fileReader = new FileReader();
-      var j = fileReader.readAsText(action.payload.file);
-      console.log(j);
-      return {
-        ...state
-      };
+      console.log(file);
     }
     case UPLOAD_CSV: {
-      console.log(action.payload.file);
+      //console.log(action.payload.file);
       return {
         ...state
       };

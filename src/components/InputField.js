@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/input.css';
+import ReactFileReader from 'react-file-reader';
 
 const InputRow = ({ data, actions }) => {
   //console.log(state);
@@ -130,17 +131,22 @@ function InputField({
         value="Download CSV"
         onClick={downloadCSV}
       ></input>
-      <input
-        type="file"
-        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
-        name="Upload JSON"
-        onChange={e => uploadJSON(e.target.files)}
-      ></input>
+      <ReactFileReader
+        multipleFiles={false}
+        fileTypes={['.json', '.csv']}
+        handleFiles={e => uploadJSON(e)}
+      >
+        <input
+          type="button"
+          className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
+          name="Upload JSON"
+        ></input>
+      </ReactFileReader>
       <input
         type="file"
         className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded m-2"
         name="Upwnload CSV"
-        onChange={e => uploadCSV(e.target.files)}
+        onChange={e => uploadCSV(e.target.files[0])}
       ></input>
     </div>
   );
